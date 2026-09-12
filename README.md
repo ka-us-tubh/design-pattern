@@ -18,6 +18,7 @@ A collection of common design patterns implemented in Python, exploring multiple
 | Pattern | Folder | Description |
 |---------|--------|-------------|
 | Adapter | [`adapter/`](./adapter/) | Bridges incompatible interfaces without modifying either side |
+| Bridge | [`bridge/`](./bridge/) | Decouples abstraction from implementation so both can vary independently |
 | Builder | [`builder/`](./builder/) | Constructs complex objects step by step via a fluent interface |
 
 ### Behavioral
@@ -27,6 +28,7 @@ A collection of common design patterns implemented in Python, exploring multiple
 | Strategy | [`strategy/`](./strategy/) | Encapsulates interchangeable algorithms and injects them at runtime |
 | Observer | [`observer/`](./observer/) | Notifies multiple dependents automatically when a subject changes state |
 | Event-Driven (Event Bus) | [`event_driven/`](./event_driven/) | Decouples publishers and subscribers through a central event broker |
+| Registry | [`registory/`](./registory/) | Central map of named handlers; self-registration via decorators |
 
 ---
 
@@ -37,6 +39,10 @@ design pattern/
 ├── adapter/
 │   ├── partial.py          # Adapter via functools.partial
 │   └── protocol.py         # Adapter via Protocol + wrapper class
+├── bridge/
+│   ├── abc.py              # Bridge via ABC — list of Buffer callables
+│   ├── protocol.py         # Bridge via Protocol — device injected via constructor
+│   └── function.py         # Bridge via plain callable — Buffer injected via constructor
 ├── builder/
 │   └── class.py            # QueryBuilder with fluent interface
 ├── event_driven/
@@ -52,6 +58,8 @@ design pattern/
 │   ├── metaclass.py        # Singleton via custom metaclass
 │   ├── object_pool.py      # Object Pool (basic)
 │   └── object_pool_context.py  # Object Pool with context manager
+├── registory/
+│   └── simple_registery.py # Decorator-based registry for named export handlers
 └── strategy/
     ├── class.py            # Strategy via ABC
     ├── dunder.py           # Strategy via Protocol + __call__
@@ -79,6 +87,10 @@ mindmap
       Adapter
         Protocol + class
         functools.partial
+      Bridge
+        ABC + Buffer list
+        Protocol + constructor injection
+        Function + constructor injection
       Builder
         Fluent interface
     Behavioral
@@ -88,6 +100,8 @@ mindmap
         Plain function
       Observer
         ABC + EventEmitter
+      Registry
+        Decorator-based self-registration
       Event-Driven
         Event Bus
 ```
@@ -98,10 +112,11 @@ mindmap
 
 | Technique | Used in |
 |-----------|---------|
-| `ABC` + `abstractmethod` | Strategy, Observer, Factory |
-| `Protocol` (structural typing) | Strategy, Factory, Adapter |
-| `@dataclass` | Strategy (`function_base`), Factory |
+| `ABC` + `abstractmethod` | Strategy, Observer, Factory, Bridge |
+| `Protocol` (structural typing) | Strategy, Factory, Adapter, Bridge |
+| `@dataclass` | Strategy (`function_base`), Factory, Bridge |
 | `metaclass` | Singleton |
 | `functools.partial` | Adapter |
 | Context manager (`__enter__`/`__exit__`) | Singleton (Object Pool) |
-| Plain callables / functions | Strategy, Event-Driven |
+| Plain callables / functions | Strategy, Event-Driven, Bridge, Registry |
+| Decorator / `@wraps` | Registry |
