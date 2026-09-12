@@ -1,7 +1,7 @@
-from dataclasses import dataclass, field
-import string
 import random
-from typing import List, Callable
+import string
+from collections.abc import Callable
+from dataclasses import dataclass, field
 
 
 def generate_id(length: int = 8) -> str:
@@ -16,7 +16,7 @@ class SupportTicket:
     issue: str
 
 
-SupportTickets = List[SupportTicket]
+SupportTickets = list[SupportTicket]
 
 Ordering = Callable[[SupportTickets], SupportTickets]
 

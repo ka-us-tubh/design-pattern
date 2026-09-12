@@ -1,16 +1,14 @@
-import string
 import random
-from typing import List
+import string
 from abc import ABC, abstractmethod
 
 
 def generate_id(length=8):
     # helper function for generating an id
-    return ''.join(random.choices(string.ascii_uppercase, k=length))
+    return "".join(random.choices(string.ascii_uppercase, k=length))
 
 
 class SupportTicket:
-
     def __init__(self, customer, issue):
         self.id = generate_id()
         self.customer = customer
@@ -19,36 +17,35 @@ class SupportTicket:
 
 class TicketOrderingStrategy(ABC):
     @abstractmethod
-    def create_ordering(self, list: List[SupportTicket]) -> List[SupportTicket]:
+    def create_ordering(self, list: list[SupportTicket]) -> list[SupportTicket]:
         pass
 
 
 class FIFOOrderingStrategy(TicketOrderingStrategy):
-    def create_ordering(self, list: List[SupportTicket]) -> List[SupportTicket]:
+    def create_ordering(self, list: list[SupportTicket]) -> list[SupportTicket]:
         return list.copy()
 
 
 class FILOOrderingStrategy(TicketOrderingStrategy):
-    def create_ordering(self, list: List[SupportTicket]) -> List[SupportTicket]:
+    def create_ordering(self, list: list[SupportTicket]) -> list[SupportTicket]:
         list_copy = list.copy()
         list_copy.reverse()
         return list_copy
 
 
 class RandomOrderingStrategy(TicketOrderingStrategy):
-    def create_ordering(self, list: List[SupportTicket]) -> List[SupportTicket]:
+    def create_ordering(self, list: list[SupportTicket]) -> list[SupportTicket]:
         list_copy = list.copy()
         random.shuffle(list_copy)
         return list_copy
 
 
 class BlackHoleStrategy(TicketOrderingStrategy):
-    def create_ordering(self, list: List[SupportTicket]) -> List[SupportTicket]:
+    def create_ordering(self, list: list[SupportTicket]) -> list[SupportTicket]:
         return []
 
 
 class CustomerSupport:
-
     def __init__(self, processing_strategy: TicketOrderingStrategy):
         self.tickets = []
         self.processing_strategy = processing_strategy
