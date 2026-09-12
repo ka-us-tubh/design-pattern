@@ -18,6 +18,7 @@ A collection of common design patterns implemented in Python, exploring multiple
 | Pattern | Folder | Description |
 |---------|--------|-------------|
 | Adapter | [`adapter/`](./adapter/) | Bridges incompatible interfaces without modifying either side |
+| Builder | [`builder/`](./builder/) | Constructs complex objects step by step via a fluent interface |
 
 ### Behavioral
 
@@ -36,6 +37,8 @@ design pattern/
 ├── adapter/
 │   ├── partial.py          # Adapter via functools.partial
 │   └── protocol.py         # Adapter via Protocol + wrapper class
+├── builder/
+│   └── class.py            # QueryBuilder with fluent interface
 ├── event_driven/
 │   └── event.py            # Event Bus with pub/sub dispatch
 ├── factory/
@@ -76,6 +79,8 @@ mindmap
       Adapter
         Protocol + class
         functools.partial
+      Builder
+        Fluent interface
     Behavioral
       Strategy
         Abstract class
