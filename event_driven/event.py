@@ -14,7 +14,7 @@ class EventBus:
             for handler in self.handlers[event_type]:
                 try:
                     handler(event)
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001
                     print(f"Handler error: {e}")
 
 
