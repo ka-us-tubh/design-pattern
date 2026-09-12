@@ -103,30 +103,6 @@ classDiagram
     MediaExporter --> AudioExporter : has
 ```
 
-### Runtime flow (all variants)
-
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Factory as ExporterFactory
-    participant VideoExp as VideoExporter
-    participant AudioExp as AudioExporter
-
-    Client->>Factory: read_factory() → select quality
-    Factory-->>Client: factory instance
-
-    Client->>Factory: get_video_exporter()
-    Factory-->>Client: VideoExporter (concrete)
-
-    Client->>Factory: get_audio_exporter()
-    Factory-->>Client: AudioExporter (concrete)
-
-    Client->>VideoExp: prepare_export(data)
-    Client->>AudioExp: prepare_export(data)
-    Client->>VideoExp: do_export(folder)
-    Client->>AudioExp: do_export(folder)
-```
-
 ---
 
 ## Quality presets

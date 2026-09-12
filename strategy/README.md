@@ -79,19 +79,3 @@ flowchart TD
     F --> H[Return empty list — no processing]
 ```
 
-### Runtime flow
-
-```mermaid
-sequenceDiagram
-    participant Client
-    participant CustomerSupport
-    participant Strategy
-
-    Client->>CustomerSupport: create_ticket(customer, issue)
-    Client->>CustomerSupport: process_tickets(strategy)
-    CustomerSupport->>Strategy: ordering(tickets)
-    Strategy-->>CustomerSupport: ordered ticket list
-    loop For each ticket
-        CustomerSupport->>CustomerSupport: process_ticket(ticket)
-    end
-```

@@ -63,29 +63,6 @@ classDiagram
     EventBus --> send_notification : dispatches to
 ```
 
-### Publish / dispatch flow
-
-```mermaid
-sequenceDiagram
-    participant Publisher
-    participant EventBus
-    participant EmailHandler as send_confirmation_email
-    participant InventoryHandler as update_inventory
-    participant NotifyHandler as send_notification
-
-    Publisher->>EventBus: publish({type: "order_placed", ...})
-    EventBus->>EventBus: look up handlers["order_placed"]
-
-    loop For each handler
-        EventBus->>EmailHandler: handler(event)
-        EmailHandler-->>EventBus: ✓
-        EventBus->>InventoryHandler: handler(event)
-        InventoryHandler-->>EventBus: ✓
-        EventBus->>NotifyHandler: handler(event)
-        NotifyHandler-->>EventBus: ✓
-    end
-```
-
 ### Event lifecycle
 
 ```mermaid

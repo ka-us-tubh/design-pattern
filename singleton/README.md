@@ -43,24 +43,6 @@ classDiagram
     Logger <|-- CustomLogger
 ```
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Singleton as Singleton (metaclass)
-    participant Logger
-
-    Client->>Singleton: CustomLogger()
-    Singleton->>Singleton: cls in _instances?
-    alt First call
-        Singleton->>Logger: super().__call__()
-        Logger-->>Singleton: new instance
-        Singleton->>Singleton: cache instance
-    else Subsequent calls
-        Singleton-->>Client: cached instance
-    end
-    Singleton-->>Client: same instance always
-```
-
 ---
 
 ## Object Pool
@@ -98,24 +80,6 @@ classDiagram
 
     ReusablePool "1" o-- "many" Reusable : manages
     PoolManager --> ReusablePool : wraps
-```
-
-```mermaid
-sequenceDiagram
-    participant Client
-    participant PoolManager
-    participant ReusablePool
-    participant Reusable
-
-    Client->>PoolManager: with PoolManager(pool) as r
-    PoolManager->>ReusablePool: acquire()
-    ReusablePool-->>PoolManager: reusable object
-    PoolManager-->>Client: r (Reusable)
-    Client->>Reusable: r.test()
-    Note over Client,Reusable: block executes
-    Client->>PoolManager: (exit with block)
-    PoolManager->>ReusablePool: release(obj)
-    ReusablePool->>ReusablePool: move back to free list
 ```
 
 ---

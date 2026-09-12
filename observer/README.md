@@ -59,27 +59,6 @@ classDiagram
     EventEmitter "1" --> "many" Observer : notifies
 ```
 
-### Runtime notification flow
-
-```mermaid
-sequenceDiagram
-    participant Client
-    participant EventEmitter
-    participant EmailNotifier
-    participant LogNotifier
-
-    Client->>EventEmitter: subscribe(EmailNotifier)
-    Client->>EventEmitter: subscribe(LogNotifier)
-
-    Client->>EventEmitter: emit("User registered")
-    loop For each observer
-        EventEmitter->>EmailNotifier: update("User registered")
-        EmailNotifier-->>EventEmitter: done
-        EventEmitter->>LogNotifier: update("User registered")
-        LogNotifier-->>EventEmitter: done
-    end
-```
-
 ### Subscribe / Unsubscribe lifecycle
 
 ```mermaid
