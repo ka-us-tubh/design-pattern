@@ -29,6 +29,7 @@ A collection of common design patterns implemented in Python, exploring multiple
 | Observer | [`observer/`](./observer/) | Notifies multiple dependents automatically when a subject changes state |
 | Event-Driven (Event Bus) | [`event_driven/`](./event_driven/) | Decouples publishers and subscribers through a central event broker |
 | Registry | [`registory/`](./registory/) | Central map of named handlers; self-registration via decorators |
+| Dependency Injection | [`dependency_injection/`](./dependency_injection/) | Passes collaborators from outside; decouples classes from concrete implementations |
 
 ---
 
@@ -45,6 +46,9 @@ design pattern/
 │   └── function.py         # Bridge via plain callable — Buffer injected via constructor
 ├── builder/
 │   └── class.py            # QueryBuilder with fluent interface
+├── dependency_injection/
+│   ├── simple.py           # Manual DI — dependencies passed directly in main()
+│   └── di_container.py     # DI Container with register/resolve + singleton support
 ├── event_driven/
 │   └── event.py            # Event Bus with pub/sub dispatch
 ├── factory/
@@ -100,6 +104,9 @@ mindmap
         Plain function
       Observer
         ABC + EventEmitter
+      Dependency Injection
+        Manual injection
+        DI Container
       Registry
         Decorator-based self-registration
       Event-Driven
