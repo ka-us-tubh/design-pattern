@@ -20,6 +20,7 @@ A collection of common design patterns implemented in Python, exploring multiple
 | Adapter | [`adapter/`](./adapter/) | Bridges incompatible interfaces without modifying either side |
 | Bridge | [`bridge/`](./bridge/) | Decouples abstraction from implementation so both can vary independently |
 | Builder | [`builder/`](./builder/) | Constructs complex objects step by step via a fluent interface |
+| Composition | [`composition/`](./composition/) | Builds complex behaviour by combining small objects instead of deep inheritance |
 
 ### Behavioral
 
@@ -46,6 +47,8 @@ design pattern/
 │   └── function.py         # Bridge via plain callable — Buffer injected via constructor
 ├── builder/
 │   └── class.py            # QueryBuilder with fluent interface
+├── composition/
+│   └── class.py            # Employee pay via Contract + optional Commission composition
 ├── dependency_injection/
 │   ├── simple.py           # Manual DI — dependencies passed directly in main()
 │   └── di_container.py     # DI Container with register/resolve + singleton support
@@ -97,6 +100,8 @@ mindmap
         Function + constructor injection
       Builder
         Fluent interface
+      Composition
+        Contract + optional Commission
     Behavioral
       Strategy
         Abstract class
