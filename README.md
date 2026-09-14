@@ -31,6 +31,7 @@ A collection of common design patterns implemented in Python, exploring multiple
 | Event-Driven (Event Bus) | [`event_driven/`](./event_driven/) | Decouples publishers and subscribers through a central event broker |
 | Registry | [`registory/`](./registory/) | Central map of named handlers; self-registration via decorators |
 | Dependency Injection | [`dependency_injection/`](./dependency_injection/) | Passes collaborators from outside; decouples classes from concrete implementations |
+| Ports & Adapters | [`port&adapter/`](./port&adapter/) | Isolates domain from infrastructure via ports (interfaces) and adapters (implementations) |
 
 ---
 
@@ -65,6 +66,14 @@ design pattern/
 │   ├── metaclass.py        # Singleton via custom metaclass
 │   ├── object_pool.py      # Object Pool (basic)
 │   └── object_pool_context.py  # Object Pool with context manager
+├── port&adapter/
+│   ├── domain/
+│   │   ├── models.py       # Frozen dataclasses — OrderRequest, OrderPlaced
+│   │   ├── ports.py        # InventoryPort Protocol
+│   │   ├── use_cases.py    # place_order() — pure business logic
+│   │   └── errors.py       # DomainError hierarchy
+│   ├── adapters.py         # SqlAlchemyInventoryAdapter
+│   └── api.py              # FastAPI driver adapter
 ├── registory/
 │   └── simple_registery.py # Decorator-based registry for named export handlers
 └── strategy/
@@ -109,6 +118,10 @@ mindmap
         Plain function
       Observer
         ABC + EventEmitter
+      Ports and Adapters
+        Domain ports
+        SQLAlchemy adapter
+        FastAPI driver
       Dependency Injection
         Manual injection
         DI Container
