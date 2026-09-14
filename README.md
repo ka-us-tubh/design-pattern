@@ -89,46 +89,46 @@ design pattern/
 ```mermaid
 mindmap
   root((Design Patterns))
-    Creational
-      Factory
+    ((Creational))
+      (Factory)
         ABC factory
         Protocol factory
         Dataclass factory
         Tuple factory
-      Singleton
+      (Singleton)
         Metaclass
         Object Pool
         Object Pool + Context Manager
-    Structural
-      Adapter
+    ((Structural))
+      (Adapter)
         Protocol + class
         functools.partial
-      Bridge
+      (Bridge)
         ABC + Buffer list
         Protocol + constructor injection
         Function + constructor injection
-      Builder
+      (Builder)
         Fluent interface
-      Composition
+      (Composition)
         Contract + optional Commission
-    Behavioral
-      Strategy
+    ((Behavioral))
+      (Strategy)
         Abstract class
         Protocol + __call__
         Plain function
-      Observer
+      (Observer)
         ABC + EventEmitter
-      Ports and Adapters
+      (Ports and Adapters)
         Domain ports
         SQLAlchemy adapter
         FastAPI driver
-      Dependency Injection
+      (Dependency Injection)
         Manual injection
         DI Container
-      Registry
+      (Registry)
         Decorator-based self-registration
-      Event-Driven
-        Event Bus
+      (Event-Driven)
+       Event Bus
 ```
 
 ---
